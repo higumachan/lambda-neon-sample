@@ -1,2 +1,12 @@
+[tasks.docker_build]
+command = 'docker'
+args = ['build', '-t', 'lambda-neon', '.']
+
 [tasks.build_for_lambda]
-command = 'docker run --rm --volume ${PWD}:/build lambda-neon /bin/bash -c "source ~/.bashrc; npm run build -- --release"'
+command = 'docker'
+args = ['run', '--rm', '--volume', '${PWD}:/build', 'lambda-neon', 'bash', '-c', 'source ~/.bashrc; npm run build -- --release']
+dependencies = ['docker_build']
+
+[tasks.packaging_for_lambda]
+script = 'rm -rf package && mkdir package && cd package && cp ../index.node ../index.js . && zip -r ../package.zip .'
+dependencies = ['build_for_lambda']

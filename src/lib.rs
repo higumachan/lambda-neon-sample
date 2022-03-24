@@ -10,7 +10,7 @@ fn handler(mut cx: FunctionContext) -> JsResult<JsString> {
     let callback = cx.argument::<JsFunction>(2)?;
 
     let null = cx.null();
-    let result = cx.string("test");
+    let result = cx.string("test2");
 
     println!("hello world");
 
