@@ -1,0 +1,2 @@
+[tasks.build_for_lambda]
+command = 'docker run --rm --volume ${PWD}:/build lambda-neon /bin/bash -c "source ~/.bashrc; npm run build -- --release"'
